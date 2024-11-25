@@ -93,6 +93,9 @@ function calculateCorrectAnswer() {
   else if (operator === "x") {
     return [operand1 * operand2, "multiply"];
   } 
+  else if (operator === "-") {
+    return [operand1 - operand2, "subtract"];
+  }
   else {
     alert(`Unimplemented operator ${operator}`);
     // throw statement will stop the game from running & show an error message in the console
@@ -129,7 +132,15 @@ function displayAdditionQuestion(operand1, operand2) {
   document.getElementById("operator").textContent = "+";
 }
 
-function displaySubtractQuestion() {}
+function displaySubtractQuestion(operand1, operand2) {  
+  // works out the larger number and displays it first
+  // works like an if statement, but shorter
+  // which is bigger? operand1 or operand2? if operand1 is bigger, display operand1, if operand2 is bigger, display operand2
+  document.getElementById("operand1").textContent = operand1 > operand2 ? operand1 : operand2;
+  document.getElementById("operand2").textContent = operand1 > operand2 ? operand2 : operand1;
+  // set up operator sign to be a minus sign
+  document.getElementById("operator").textContent = "-";
+}
 
 function displayMultiplyQuestion(operand1, operand2) {
 
