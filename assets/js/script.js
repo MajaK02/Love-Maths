@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
   for (let button of buttons) {
       button.addEventListener("click", function() {
           if (this.getAttribute("data-type") === "submit") {
-              alert("You clicked Submit!");
+              checkAnswer(); 
           } else {
               let gameType = this.getAttribute("data-type");
               runGame(gameType);
@@ -30,6 +30,7 @@ function runGame(gameType) {
   let num1 = Math.floor(Math.random() * 25) + 1;
   let num2 = Math.floor(Math.random() * 25) + 1;
 
+  // two or three equal signs are a comparison operator (comparing two+ values), one equal sign is an assignment operator (assigns a value)
   if ((gameType === "addition")) {
     displayAdditionQuestion(num1, num2);
   } else {
@@ -39,9 +40,44 @@ function runGame(gameType) {
   }
 }
 
-function checkAnswer() {}
+/**
+ * checks the answer against the first element in
+ * the returned calculateCorrectAnswer array
+ */
+function checkAnswer() {
+  let userAnswer = parseInt(document.getElementById("answer-box").value);
+  let calculatedAnswer = calculateCorrectAnswer();
+  let isCorrect = userAnswer === calculatedAnswer[0];
+  if (isCorrect) {
+    alert("Hey! You got it right! :D");
+  } else {
+    alert(`Awwww...you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+  }
 
-function calculateCorrectAnswer() {}
+  runGame(calculatedAnswer[1]);
+
+}
+
+/**
+ * Gets the operands (the numbers) and the operator (plus, minus etc)
+ * directly from the dom, and returns the correct answer.
+ */
+function calculateCorrectAnswer() {
+  // gets the operands (the numbers) and the operator (plus, minus etc) directly from the dom
+  // parseInt converts the string into a number (integer)
+  let operand1 = parseInt(document.getElementById("operand1").innerText);
+  let operand2 = parseInt(document.getElementById("operand2").innerText);
+  let operator = document.getElementById("operator").innerText;
+
+  if (operator === "+") {
+    return [operand1 + operand2, "addition"];
+  } else {
+    alert(`Unimplemented operator ${operator}`);
+    // throw statement will stop the game from running & show an error message in the console
+    throw `Unimplemented operator ${operator}. Aborting!`;
+  }
+
+}
 
 function incrementScore() {}
 
