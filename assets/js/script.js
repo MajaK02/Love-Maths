@@ -14,6 +14,13 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+// keydown listens for a key press, and then runs the function
+// helps make websites keyboard controlled
+  document.getElementById("answer-box").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      checkAnswer();
+    }
+  });
 
   runGame("addition");
 });
@@ -25,6 +32,12 @@ document.addEventListener("DOMContentLoaded", function () {
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+
+// clears the answer box
+document.getElementById("answer-box").value = "";
+// each time the game is run, the anser box will be focused = the cursor will be in the answer box
+document.getElementById("answer-box").focus();
+
   // creates two random numbers between 1 and 25
   let num1 = Math.floor(Math.random() * 25) + 1;
   let num2 = Math.floor(Math.random() * 25) + 1;
@@ -34,6 +47,9 @@ function runGame(gameType) {
     displayAdditionQuestion(num1, num2);
   } else if (gameType === "multiply") {
     displayMultiplyQuestion(num1, num2);
+  } 
+  else if (gameType === "subtract") {
+    displaySubtractQuestion(num1, num2);
   } else {
     alert(`Unknown game type: ${gameType}`);
     // throw statement will stop the game from running & show an error message in the console
