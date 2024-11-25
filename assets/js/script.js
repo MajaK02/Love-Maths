@@ -1,32 +1,33 @@
-function runGame () {
-    
-}
+// Wait for DOM to load before running the game
+// Get the button elements and add event listeners to them
 
-function checkAnswer () {
-    
-}
+document.addEventListener("DOMContentLoaded", function () {
+  letbuttons = document.getElementsByTagName("button");
 
-function calculateCorrectAnswer () {
-    
-}
+  for (let button of buttons) {
+    button.addEventListener("click", function () {
+      if (this.getAttribute("data-type") === "submit") {
+        alert("You clicked Submit!");
+      } else {
+        let gameType = this.getAttribute("data-type");
+        alert(`You clicked ${gameType}`);
+      }
+    });
+  }
+});
 
-function incrementScore () {
-    
-}
+function runGame() {}
 
-function incrementWrongAnswer () {
-    
-}
+function checkAnswer() {}
 
-function displayAdditionQuestion () {
-    
-}
+function calculateCorrectAnswer() {}
 
-function displaySubtractQuestion () {
-    
-}
+function incrementScore() {}
 
-function displayMultiplyQuestion () {
-    
-}
+function incrementWrongAnswer() {}
 
+function displayAdditionQuestion() {}
+
+function displaySubtractQuestion() {}
+
+function displayMultiplyQuestion() {}
